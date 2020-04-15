@@ -14,7 +14,10 @@
     "url": "https://github.com/fac19/week7-hihi/issues"
   },
   "homepage": "https://github.com/fac19/week7-hihi#readme",
-  "dependencies": {},
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "pg": "^8.0.2"
+  },
   "devDependencies": {
     "nodemon": "^2.0.3",
     "tap-spec": "^5.0.0",
