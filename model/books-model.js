@@ -12,4 +12,12 @@ function addBook() {
   // add new book to database
 }
 
-module.exports = { getAllBooks, getBook, addBook };
+function deleteBook() {
+  // remove book from database
+}
+
+function updateBook(id, update) {
+  // update book in the databse
+}
+
+module.exports = { getAllBooks, getBook, addBook, deleteBook };

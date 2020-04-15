@@ -9,11 +9,29 @@ function getAllUsersHandler (req, res, next) {
 }
 
 function addUserHandler (req, res, next) {
-    usersModel.addUser(req.body)
+  usersModel.addUser(req.body)
     .then(newUser => {
-        res.status(200).send(newUser)
+        // create new user with jwt
     })
     .catch(next);
 }
 
-module.exports = { getAllUsersHandler, addUserHandler  };
+function loginHandler (req, res, next) {
+  // login checking token
+}
+
+function logoutHandler (req, res, next) {
+  // logout
+}
+
+function getAllReadersHandler (req, res, next) {
+  // get all users that have read a specific book
+}
+
+module.exports = { 
+  getAllUsersHandler, 
+  addUserHandler, 
+  loginHandler, 
+  logoutHandler,
+  getAllReadersHandler 
+};
