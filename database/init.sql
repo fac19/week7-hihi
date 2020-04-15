@@ -18,8 +18,8 @@ CREATE TABLE users
 CREATE TABLE books
 (
     id SERIAL PRIMARY KEY,
-    book_title TEXT,
-    book_author TEXT,
+    title TEXT,
+    author TEXT,
     fiction BOOLEAN
 );
 
@@ -39,7 +39,7 @@ VALUES
     ('ivo', 'password', 19);
 
 INSERT INTO books
-    (book_title, book_author, fiction)
+    (title, author, fiction)
 VALUES
     ('The Bell Jar', 'Sylvia Plath', TRUE),
     ('The Clown Egg Register', 'Luke Stevenson', FALSE);

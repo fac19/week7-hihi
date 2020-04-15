@@ -1,11 +1,13 @@
 const express = require("express");
 const PORT = process.env.PORT || 3000;
-const { getAllBooksHandler, 
-  getBookIdHandler, 
-  addBookHandler
+const {
+  getAllBooksHandler,
+  getBookIdHandler,
+  addBookHandler,
 } = require("./handlers/books-handler");
-const { getAllUsersHandler, 
-  addUserHandler
+const {
+  getAllUsersHandler,
+  addUserHandler,
 } = require("./handlers/users-handler");
 
 const server = express();

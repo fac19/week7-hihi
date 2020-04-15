@@ -1,15 +1,18 @@
-const db = require("../database/db");
+const db = require("../database/connection");
 
 function getAllBooks() {
-  // return db.select (all books)
+  return db.query("SELECT * FROM books;");
 }
 
-function getBook() {
-  // return db.select (book by id)
+function getBook(id) {
+  return db.query("SELECT * FROM books WHERE id = $1", [id]);
 }
 
-function addBook() {
-  // add new book to database
+function addBook(title, author, fiction) {
+  return db.query(
+    `INSERT INTO books(title, author, fiction) VALUES($1, $2, $3)`,
+    [title, author, fiction]
+  );
 }
 
 module.exports = { getAllBooks, getBook, addBook };
