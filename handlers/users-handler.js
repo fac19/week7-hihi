@@ -16,7 +16,8 @@ function getAllUsersHandler(req, res, next) {
 
 function addUserHandler(req, res, next) {
   let password = req.body.password;
-  bcrypt.genSalt(10)
+  bcrypt
+    .genSalt(10)
     .then((salt) => bcrypt.hash(password, salt))
     .then((hash) => {
       usersModel
@@ -25,7 +26,7 @@ function addUserHandler(req, res, next) {
           const payload = { newUser: newUser.id };
           newUser.access_token = jwt.sign(payload, SECRET, { expiresIn: "1h" });
           res.status(201).send(newUser);
-        })
+        });
     })
     .catch(next);
 }
@@ -35,20 +36,19 @@ function loginHandler(req, res, next) {
   usersModel
     .getUser(req.body.username)
     .then((user) => {
-      bcrypt.compare(password, user.password)
-        .then((match) => {
-          if (!match) {
-            const error = new Error("Input password does not match database");
-            error.status = 401;
-            next(error)
-          } else {
-            const payload = { user: user.id };
-            const token = jwt.sign(payload, SECRET, { expiresIn: "24h" });
-            res.status(200).send( { access_token: token });
-          }
-        })
+      bcrypt.compare(password, user.password).then((match) => {
+        if (!match) {
+          const error = new Error("Input password does not match database");
+          error.status = 401;
+          next(error);
+        } else {
+          const payload = { user: user.id };
+          const token = jwt.sign(payload, SECRET, { expiresIn: "24h" });
+          res.status(200).send({ access_token: token });
+        }
+      });
     })
-    .catch(next)
+    .catch(next);
 }
 
 function getAllReadersHandler(req, res, next) {

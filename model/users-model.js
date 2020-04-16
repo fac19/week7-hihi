@@ -5,14 +5,18 @@ function getAllUsers() {
 }
 
 function getUser(username) {
-  return db.query("SELECT * FROM users WHERE username=($1);", [username]);
+  return db
+    .query("SELECT * FROM users WHERE username=($1);", [username])
+    .then((res) => res.rows[0]);
 }
 
 function addUser(username, password, cohort) {
-  return db.query(
-    "INSERT INTO users (username, password, cohort)VALUES($1, $2, $3);",
-    [username, password, cohort]
-  );
+  return db
+    .query(
+      "INSERT INTO users (username, password, cohort)VALUES($1, $2, $3);",
+      [username, password, cohort]
+    )
+    .then((res) => res.rows);
 }
 
 module.exports = { getAllUsers, addUser, getUser };
