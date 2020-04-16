@@ -38,13 +38,12 @@ server.get("/:book/users", getAllReadersHandler);
 server.delete("/books/:id", authMiddleware, deleteBookHandler);
 
 server.get("/books", getAllBooksHandler);
-server.post("/books", authMiddleware, addBookHandler); // needs testing with bearer token!
+server.post("/books", authMiddleware, addBookHandler);
 
 // USER ROUTES
 server.get("/users", getAllUsersHandler);
 server.post("/users", addUserHandler);
 server.post("/login", loginHandler);
 // server.post("/logout", authMiddleware, logoutHandler);
-server.get("/:book/users", getAllReadersHandler);
 
 server.use(errorMiddleware);

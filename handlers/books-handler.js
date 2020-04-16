@@ -22,11 +22,11 @@ function getBookIdHandler(req, res, next) {
 
 function addBookHandler(req, res, next) {
   booksModel
-    .addBook(req.body.title, req.body.author, req.body.fiction)
-    .then((newBook) => {
-      res.status(200).send(newBook);
-    })
-    .catch(next);
+  .addBook(req.body.title, req.body.author, req.body.fiction)
+  .then((newBook) => {
+    res.status(200).send();
+  })
+  .catch(next);
 }
 
 function deleteBookHandler(req, res, next) {
