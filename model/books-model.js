@@ -21,7 +21,7 @@ function addBook(title, author, fiction) {
   );
 }
 
-function getBooksByType (boolean) {
+function getBooksByType(boolean) {
   return db.query(
     "SELECT * FROM books WHERE fiction = $1;", [boolean]
   );

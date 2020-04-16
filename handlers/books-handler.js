@@ -1,30 +1,32 @@
 const booksModel = require("../model/books-model");
+const junctionModel = require("../model/junction-model");
+const usersModel = require("../model/users-model");
 
 function getAllBooksHandler(req, res, next) {
   booksModel
-  .getAllBooks()
-  .then((allBooks) => {
-    res.send(allBooks);
-  })
-  .catch(next);
+    .getAllBooks()
+    .then((allBooks) => {
+      res.send(allBooks);
+    })
+    .catch(next);
 }
 
 function getBookIdHandler(req, res, next) {
   booksModel
-  .getBook(req.params.id)
-  .then((book) => {
-    res.send(book);
-  })
-  .catch(next);
+    .getBook(req.params.id)
+    .then((book) => {
+      res.send(book);
+    })
+    .catch(next);
 }
 
 function addBookHandler(req, res, next) {
   booksModel
-  .addBook(req.body.title, req.body.author, req.body.fiction)
-  .then((newBook) => {
-    res.status(200).send(newBook);
-  })
-  .catch(next);
+    .addBook(req.body.title, req.body.author, req.body.fiction)
+    .then((newBook) => {
+      res.status(200).send(newBook);
+    })
+    .catch(next);
 }
 
 function deleteBookHandler(req, res, next) {
@@ -45,26 +47,43 @@ function updateBookHandler(req, res, next) {
     .catch(next);
 }
 
-function getAllUsersBooksHandler(req, res, next) {
-  // send request to model function that returns all books read by specific user
+
+/*
+//All of the books read by a specific user. 
+function getAllUserBooksHandler(req, res, next) {
+  // console.log(req.params.user);
+  usersModel
+    .getIdFromUsername(req.params.user)
+    .then((userId) => {
+      console.log("USER ID: ", userId);
+      junctionModel
+        .getBooksFromUser(userId)
+        .then(bookList => {
+          const books = bookList.rows.map(e => e.title);
+          console.log(books);
+          res.status(200).send(books);
+        })
+    })
+    .catch(next);
 }
+*/
 
 function getAllFictionHandler(req, res, next) {
   booksModel
-  .getBooksByType(true)
-  .then((fiction) => {
-    res.status(200).send(fiction.rows)
-  })
-  .catch(next)
+    .getBooksByType(true)
+    .then((fiction) => {
+      res.status(200).send(fiction.rows)
+    })
+    .catch(next)
 }
 
 function getAllNonFictionHandler(req, res, next) {
   booksModel
-  .getBooksByType(false)
-  .then((nonfiction) => {
-    res.status(200).send(nonfiction.rows)
-  })
-  .catch(next)
+    .getBooksByType(false)
+    .then((nonfiction) => {
+      res.status(200).send(nonfiction.rows)
+    })
+    .catch(next)
 }
 
 module.exports = {
@@ -73,7 +92,7 @@ module.exports = {
   addBookHandler,
   deleteBookHandler,
   updateBookHandler,
-  getAllUsersBooksHandler,
+  getAllUserBooksHandler,
   getAllFictionHandler,
   getAllNonFictionHandler,
 };

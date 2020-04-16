@@ -32,6 +32,12 @@ function addUser(username, password, cohort) {
     .then((res) => res.rows);
 }
 
+function getIdFromUsername(username) {
+  // console.log(username);
+  //SOMETHING IS GOING WRONG HERE - NOT BRINGING BACK USER ROWS
+  return db.query(`SELECT id FROM users WHERE username=$1`, [username]).then(res => res.rows);
+}
+
 function getMultipleUsersById(ids) {
   const list = ids.map((e, i) => {
     return `$${i + 1}`
@@ -39,4 +45,4 @@ function getMultipleUsersById(ids) {
   return db.query(`SELECT username FROM users WHERE id IN (${list});`, ids)
 }
 
-module.exports = { getAllUsers, addUser, getUser, getUserById, getMultipleUsersById };
+module.exports = { getAllUsers, addUser, getUser, getUserById, getIdFromUsername, getMultipleUsersById };
