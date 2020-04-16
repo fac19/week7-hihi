@@ -64,10 +64,16 @@ function getAllReadersHandler(req, res, next) {
     junctionModel
     .getUserFromBook(bookId)
     .then((userInfo) => {
-      // const userIds = userInfo.rows.map(obj => obj.id)
-      // console.log(userIds)
-      
+      const userIds = userInfo.rows.map(obj => obj.user_id)
+      usersModel
+        .getMultipleUsersById(userIds)
+        .then((userList) => {
+          const users = userList.rows.map(e => e.username);
+          console.log(users);
+          res.send(users)
+        })
     })
+    .catch(next)
   })
   
   /* 

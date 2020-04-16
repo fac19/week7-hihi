@@ -25,4 +25,14 @@ function addUser(username, password, cohort) {
     .then(res => res.rows);
 }
 
-module.exports = { getAllUsers, addUser, getUser, getUserById };
+function getMultipleUsersById(ids) {
+  const list = ids.map((e, i) => {
+    return `$${i + 1}`
+  });
+  console.log(`SELECT username FROM users WHERE id IN (${list})`);
+  return db.query(`SELECT username FROM users WHERE id IN (${list});`, ids)
+}
+
+
+
+module.exports = { getAllUsers, addUser, getUser, getUserById, getMultipleUsersById };
