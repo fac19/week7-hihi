@@ -6,25 +6,25 @@ const SECRET = process.env.JWT_SECRET;
 
 function verifyUser(req, res, next) {
   const authHeader = req.headers.authorization;
-  if ( !authHeader ) {
-    const error = new Error("Auth token required")
-    error.status = 404
-    next(error)
+  if (!authHeader) {
+    const error = new Error("Auth token required");
+    error.status = 404;
+    next(error);
   } else {
-    const token = authHeader.replace("Bearer ", "")
+    const token = authHeader.replace("Bearer ", "");
     try {
-      const tokenData = jwt.verify(token, SECRET)
+      const tokenData = jwt.verify(token, SECRET);
       userModel
-        .getSpecificUser(tokenData.user)
+        .getUserById(tokenData.user)
         .then((user) => {
           req.user = user;
-          next()
+          next();
         })
-        .catch(next)
+        .catch(next);
     } catch (_err) {
-      const error = new Error('Not authorized')
-      error.status = 401
-      next(error)
+      const error = new Error("Not authorized");
+      error.status = 401;
+      next(error);
     }
   }
 }

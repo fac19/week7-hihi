@@ -17,7 +17,8 @@ const {
   // logoutHandler,
   getAllReadersHandler,
 } = require("./handlers/users-handler");
-
+const verifyUser = require("./middleware/auth");
+const handleError = require("./middleware/error");
 // const bodyparser = require("body-parser")
 
 const server = express();
@@ -29,8 +30,8 @@ server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
 server.get("/books", getAllBooksHandler);
 server.get("/books/:id", getBookIdHandler);
 server.post("/books", addBookHandler);
-server.delete("/books/:id", deleteBookHandler);
-server.put("/books/:id", updateBookHandler);
+server.delete("/books/:id", verifyUser, deleteBookHandler);
+server.put("/books/:id", verifyUser, updateBookHandler);
 server.get("/:user/books", getAllUsersBooksHandler);
 server.get("/books/fiction", getAllFictionHandler);
 server.get("/books/non-fiction", getAllNonFictionHandler);
@@ -41,3 +42,5 @@ server.post("/users", addUserHandler);
 server.post("/login", loginHandler);
 // server.post("/logout", logoutHandler);
 server.get("/:book/users", getAllReadersHandler);
+
+server.use(handleError);
