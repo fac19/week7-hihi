@@ -1,5 +1,8 @@
 const express = require("express");
 const PORT = process.env.PORT || 3000;
+const errorMiddleware = require("middleware/error");
+const authMiddleware = require("middleware/auth");
+
 const { 
   getAllBooksHandler, 
   getBookIdHandler, 
@@ -28,9 +31,9 @@ server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
 // BOOK ROUTES
 server.get("/books", getAllBooksHandler);
 server.get("/books/:id", getBookIdHandler);
-server.post("/books", addBookHandler);
-server.delete("/books/:id", deleteBookHandler);
-server.put("/books/:id", updateBookHandler);
+server.post("/books", authMiddleware, addBookHandler);
+server.delete("/books/:id", authMiddleware, deleteBookHandler);
+server.put("/books/:id", authMiddleware, updateBookHandler);
 server.get("/:user/books", getAllUsersBooksHandler);
 server.get("/books/fiction", getAllFictionHandler);
 server.get("/books/non-fiction", getAllNonFictionHandler);
@@ -39,5 +42,7 @@ server.get("/books/non-fiction", getAllNonFictionHandler);
 server.get("/users", getAllUsersHandler);
 server.post("/users", addUserHandler);
 server.post("/login", loginHandler);
-server.post("/logout", logoutHandler);
+server.post("/logout", authMiddleware, logoutHandler);
 server.get("/:book/users", getAllReadersHandler);
+
+server.use(errorMiddleware);
