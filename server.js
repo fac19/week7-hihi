@@ -45,6 +45,5 @@ server.get("/users", getAllUsersHandler);
 server.post("/users", addUserHandler);
 server.post("/login", loginHandler);
 // server.post("/logout", authMiddleware, logoutHandler);
-server.get("/:book/users", getAllReadersHandler);
 
 server.use(errorMiddleware);
