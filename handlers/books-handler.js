@@ -22,7 +22,7 @@ function addBookHandler(req, res, next) {
   booksModel
   .addBook(req.body.title, req.body.author, req.body.fiction)
   .then((newBook) => {
-    res.status(200).send(newBook);
+    res.status(200).send();
   })
   .catch(next);
 }
