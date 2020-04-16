@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
 const SECRET = process.env.JWT_SECRET;
-const bcrypt = require("bcrypt.js");
+const bcrypt = require("bcrypt");
 
 function getAllUsersHandler(req, res, next) {
   usersModel
@@ -59,6 +59,6 @@ module.exports = {
   getAllUsersHandler,
   addUserHandler,
   loginHandler,
-  logoutHandler,
+  // logoutHandler,
   getAllReadersHandler,
 };
