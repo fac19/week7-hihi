@@ -24,19 +24,31 @@ function addUserHandler(req, res, next) {
         .then((newUser) => {
           const payload = { newUser: newUser.id };
           newUser.access_token = jwt.sign(payload, SECRET, { expiresIn: "1h" });
-          res.status(200).send(newUser);
+          res.status(201).send(newUser);
         })
-        .catch(next);
-  }
+    })
+    .catch(next);
 }
-
 
 function loginHandler(req, res, next) {
-  // login checking token
-}
-
-function logoutHandler(req, res, next) {
-  // logout
+  const password = req.body.password;
+  usersModel
+    .getUser(req.body.username)
+    .then((user) => {
+      bcrypt.compare(password, user.password)
+        .then((match) => {
+          if (!match) {
+            const error = new Error("Input password does not match database");
+            error.status = 401;
+            next(error)
+          } else {
+            const payload = { user: user.id };
+            const token = jwt.sign(payload, SECRET, { expiresIn: "24h" });
+            res.status(200).send( { access_token: token });
+          }
+        })
+    })
+    .catch(next)
 }
 
 function getAllReadersHandler(req, res, next) {
