@@ -18,8 +18,11 @@ const {
   getAllReadersHandler
 } = require("./handlers/users-handler");
 
+// const bodyparser = require("body-parser")
+
 const server = express();
 
+server.use(express.json());
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
 
 // BOOK ROUTES
