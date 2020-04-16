@@ -1,6 +1,6 @@
 {
   "name": "week7-hihi",
-  "version": "1.0.0",
+  "version": " 1.0.0",
   "description": "REST API for books and readers",
   "main": "index.js",
   "scripts": {},
@@ -15,7 +15,9 @@
   },
   "homepage": "https://github.com/fac19/week7-hihi#readme",
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.0.2"
   },
   "devDependencies": {
