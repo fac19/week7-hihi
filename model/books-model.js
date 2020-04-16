@@ -1,11 +1,13 @@
 const db = require("../database/connection");
 
 function getAllBooks() {
-  return db.query("SELECT * FROM books;");
+  return db.query("SELECT * FROM books;").then((res) => res.rows);
 }
 
 function getBook(id) {
-  return db.query("SELECT * FROM books WHERE id = $1;", [id]);
+  return db
+    .query("SELECT * FROM books WHERE id = $1;", [id])
+    .then((res) => res.rows[0]);
 }
 
 function addBook(title, author, fiction) {
@@ -15,8 +17,8 @@ function addBook(title, author, fiction) {
   );
 }
 
-function deleteBook() {
-  // remove book from database
+function deleteBook(id) {
+  return db.query(`DELETE FROM books WHERE id=$1`, [id]);
 }
 
 function updateBook(id, update) {
