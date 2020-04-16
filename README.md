@@ -41,7 +41,7 @@ $ psql -c "CREATE DATABASE readers_coders_test_db WITH OWNER myuser"
 12. Run `$ npm test` to run tests
 
 ### Deployed virtually to Heroku
-[Readers + Coders](https://readers-and-coders.herokuapp.com/books)
+[Readers and Coders](https://readers-and-coders.herokuapp.com/books)  
 You can make requests to the Heroku App URL, e.g. `GET` to `https://readers-and-coders.herokuapp.com/books`
 
 ## Database Schema
