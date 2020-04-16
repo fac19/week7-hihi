@@ -18,6 +18,11 @@ function getUserById(id) {
     .then((res) => res.rows);
 }
 
+function getUserById(id) {
+  return db
+    .query("SELECT * FROM users WHERE id=($1);", [id])
+}
+
 function addUser(username, password, cohort) {
   return db
     .query(
@@ -27,4 +32,11 @@ function addUser(username, password, cohort) {
     .then((res) => res.rows);
 }
 
-module.exports = { getAllUsers, addUser, getUser, getUserById };
+function getMultipleUsersById(ids) {
+  const list = ids.map((e, i) => {
+    return `$${i + 1}`
+  });
+  return db.query(`SELECT username FROM users WHERE id IN (${list});`, ids)
+}
+
+module.exports = { getAllUsers, addUser, getUser, getUserById, getMultipleUsersById };
