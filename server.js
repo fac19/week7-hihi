@@ -1,21 +1,21 @@
 const express = require("express");
 const PORT = process.env.PORT || 3000;
-const { 
-  getAllBooksHandler, 
-  getBookIdHandler, 
+const {
+  getAllBooksHandler,
+  getBookIdHandler,
   addBookHandler,
   deleteBookHandler,
   updateBookHandler,
   getAllUsersBooksHandler,
   getAllFictionHandler,
-  getAllNonFictionHandler
+  getAllNonFictionHandler,
 } = require("./handlers/books-handler");
-const { 
-  getAllUsersHandler, 
+const {
+  getAllUsersHandler,
   addUserHandler,
   loginHandler,
-  logoutHandler,
-  getAllReadersHandler
+  // logoutHandler,
+  getAllReadersHandler,
 } = require("./handlers/users-handler");
 
 // const bodyparser = require("body-parser")
@@ -39,5 +39,5 @@ server.get("/books/non-fiction", getAllNonFictionHandler);
 server.get("/users", getAllUsersHandler);
 server.post("/users", addUserHandler);
 server.post("/login", loginHandler);
-server.post("/logout", logoutHandler);
+// server.post("/logout", logoutHandler);
 server.get("/:book/users", getAllReadersHandler);
