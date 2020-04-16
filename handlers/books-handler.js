@@ -33,11 +33,16 @@ function deleteBookHandler(req, res, next) {
 
 function updateBookHandler(req, res, next) {
   booksModel
-  .updateBook(req.params.id, req.body)
-  .then((updatedBook) => {
-    res.status(200).send(updatedBook);
-  })
-  .catch(next);
+    .updateBook(
+      req.params.id,
+      req.body.title,
+      req.body.author,
+      req.body.fiction
+    )
+    .then(() => {
+      res.status(200).send();
+    })
+    .catch(next);
 }
 
 function getAllUsersBooksHandler(req, res, next) {
@@ -54,7 +59,6 @@ function getAllFictionHandler(req, res, next) {
 }
 
 function getAllNonFictionHandler(req, res, next) {
-  console.log('hello');
   booksModel
   .getBooksByType(false)
   .then((nonfiction) => {
