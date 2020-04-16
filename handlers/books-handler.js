@@ -33,9 +33,14 @@ function deleteBookHandler(req, res, next) {
 
 function updateBookHandler(req, res, next) {
   booksModel
-    .updateBook(req.params.id, req.body)
-    .then((updatedBook) => {
-      res.status(200).send(updatedBook);
+    .updateBook(
+      req.params.id,
+      req.body.title,
+      req.body.author,
+      req.body.fiction
+    )
+    .then(() => {
+      res.status(200).send();
     })
     .catch(next);
 }
