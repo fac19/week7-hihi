@@ -15,7 +15,7 @@ function verifyUser(req, res, next) {
     try {
       const tokenData = jwt.verify(token, SECRET)
       userModel
-        .getSpecificUser(tokenData.user)
+        .getUserById(tokenData.user)
         .then((user) => {
           req.user = user;
           next()

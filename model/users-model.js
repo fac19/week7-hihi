@@ -10,6 +10,11 @@ function getUser(username) {
     .then((res) => res.rows[0]);
 }
 
+function getUserById(id) {
+  return db
+    .query("SELECT * FROM users WHERE id=($1);", [id])
+}
+
 function addUser(username, password, cohort) {
   return db
     .query(
@@ -19,4 +24,4 @@ function addUser(username, password, cohort) {
     .then((res) => res.rows);
 }
 
-module.exports = { getAllUsers, addUser, getUser };
+module.exports = { getAllUsers, addUser, getUser, getUserById };
