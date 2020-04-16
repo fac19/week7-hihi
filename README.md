@@ -7,9 +7,6 @@ We are having problems with one of our functions.
 `getIdFromUsername(username)` in file `model/users-model.js` line 35. Should be returning an id number, but is returning an empty object. 
 It works if you type directly into psql so not sure why this is happening. Because of this, route `/:user/books` isn't functioning. 
 
-### HEROKU
-We've deployed but cannot make requests to api current e.g. `GET` to `https://readers-and-coders.herokuapp.com/books` using Postman 🤔
-
 ## Project Description
 A REST API that returns JSON data. Our database holds data about the books that FAC cohort members have read.
 
