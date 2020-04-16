@@ -83,5 +83,5 @@ module.exports = {
   addUserHandler,
   loginHandler,
   // logoutHandler,
-  getAllReadersHandler
+  getAllReadersHandler,
 };

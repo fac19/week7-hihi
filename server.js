@@ -11,14 +11,14 @@ const {
   updateBookHandler,
   getAllUsersBooksHandler,
   getAllFictionHandler,
-  getAllNonFictionHandler
+  getAllNonFictionHandler,
 } = require("./handlers/books-handler");
-const { 
-  getAllUsersHandler, 
+const {
+  getAllUsersHandler,
   addUserHandler,
   loginHandler,
-  logoutHandler,
-  getAllReadersHandler
+  // logoutHandler,
+  getAllReadersHandler,
 } = require("./handlers/users-handler");
 
 // const bodyparser = require("body-parser")
