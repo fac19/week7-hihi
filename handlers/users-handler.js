@@ -70,17 +70,11 @@ function getAllReadersHandler(req, res, next) {
         .then((userList) => {
           const users = userList.rows.map(e => e.username);
           console.log(users);
-          res.send(users)
+          res.status(200).send(users)
         })
     })
     .catch(next)
   })
-  
-  /* 
-  1. get book id with book name from books table
-  2. get all user id's that match book id from junction table
-  3. with list of user id's, get list of user names from users table
-  */
   
 }
 

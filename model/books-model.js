@@ -19,6 +19,13 @@ function addBook(title, author, fiction) {
   );
 }
 
+function getBooksByType (boolean) {
+  return db.query(
+    "SELECT * FROM books WHERE fiction = $1;", [boolean]
+  );
+}
+
+
 function deleteBook() {
   // remove book from database
 }
@@ -27,4 +34,4 @@ function updateBook(id, update) {
   // update book in the databse
 }
 
-module.exports = { getAllBooks, getBook, addBook, deleteBook, getIdFromTitle };
+module.exports = { getAllBooks, getBook, addBook, deleteBook, getIdFromTitle, getBooksByType };

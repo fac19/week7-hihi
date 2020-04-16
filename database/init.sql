@@ -42,7 +42,8 @@ INSERT INTO books
     (title, author, fiction)
 VALUES
     ('The Bell Jar', 'Sylvia Plath', TRUE),
-    ('The Clown Egg Register', 'Luke Stevenson', FALSE);
+    ('The Clown Egg Register', 'Luke Stevenson', FALSE),
+    ('Harry Potter', 'JK Rowling', TRUE);
 
 
 INSERT INTO user_books

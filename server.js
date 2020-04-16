@@ -29,20 +29,21 @@ server.use(express.json());
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
 
 // BOOK ROUTES
-server.get("/books", getAllBooksHandler);
+server.get("/books/non-fiction", getAllNonFictionHandler);
+server.get("/books/fiction", getAllFictionHandler);
 server.get("/books/:id", getBookIdHandler);
-server.post("/books", authMiddleware, addBookHandler);
-server.delete("/books/:id", authMiddleware, deleteBookHandler);
 server.put("/books/:id", authMiddleware, updateBookHandler);
 server.get("/:user/books", getAllUsersBooksHandler);
-server.get("/books/fiction", getAllFictionHandler);
-server.get("/books/non-fiction", getAllNonFictionHandler);
+server.get("/:book/users", getAllReadersHandler);
+server.delete("/books/:id", authMiddleware, deleteBookHandler);
+
+server.get("/books", getAllBooksHandler);
+server.post("/books", authMiddleware, addBookHandler);
 
 // USER ROUTES
 server.get("/users", getAllUsersHandler);
 server.post("/users", addUserHandler);
 server.post("/login", loginHandler);
 // server.post("/logout", authMiddleware, logoutHandler);
-server.get("/:book/users", getAllReadersHandler);
 
 server.use(errorMiddleware);
