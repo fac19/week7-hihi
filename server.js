@@ -1,7 +1,7 @@
 const express = require("express");
 const PORT = process.env.PORT || 3000;
-const errorMiddleware = require("middleware/error");
-const authMiddleware = require("middleware/auth");
+const errorMiddleware = require("./middleware/error");
+const authMiddleware = require("./middleware/auth");
 
 const { 
   getAllBooksHandler, 
@@ -42,7 +42,7 @@ server.get("/books/non-fiction", getAllNonFictionHandler);
 server.get("/users", getAllUsersHandler);
 server.post("/users", addUserHandler);
 server.post("/login", loginHandler);
-server.post("/logout", authMiddleware, logoutHandler);
+// server.post("/logout", authMiddleware, logoutHandler);
 server.get("/:book/users", getAllReadersHandler);
 
 server.use(errorMiddleware);
