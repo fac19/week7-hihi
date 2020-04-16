@@ -97,10 +97,22 @@ Gets a list of users
 
 ###### POST /users
 Route for signing up, creates your access token
+```json
+{
+  "username": "yourusername",
+  "password": "yourpassword",
+  "cohort": 19
+}
+```
 
 ###### POST /login
 Route for logging in, you receive an access token
-
+```json
+{
+  "username": "yourusername",
+  "password": "yourpassword",
+}
+```
 ###### GET /:user/books
 DISCLAIMER: currently doesn't work
 Gets books associated with a particular username, e.g.`/ivo/books/`
