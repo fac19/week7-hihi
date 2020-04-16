@@ -42,9 +42,7 @@ $ psql -c "CREATE DATABASE readers_coders_test_db WITH OWNER myuser"
 
 ### Deployed virtually to Heroku
 [Readers + Coders](https://readers-and-coders.herokuapp.com/books)
-- Doesn't entirely work
-- Have deployed with successful build
-- Have successfully initialise Postgres database
+You can make requests to the Heroku App URL, e.g. `GET` to `https://readers-and-coders.herokuapp.com/books`
 
 ## Database Schema
 ```sql
