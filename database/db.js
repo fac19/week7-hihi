@@ -9,3 +9,5 @@ function build(params) {
 }
 
 if (require.main === module) build(); // calls build only if this file is invoked from command line - if via another file, require.main !== module
+
+module.exports = build;
