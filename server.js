@@ -33,7 +33,7 @@ server.get("/books/non-fiction", getAllNonFictionHandler);
 server.get("/books/fiction", getAllFictionHandler);
 server.get("/books/:id", getBookIdHandler);
 server.put("/books/:id", authMiddleware, updateBookHandler);
-//server.get("/:user/books", getAllUserBooksHandler); NOT WORKING PLS HELP
+server.get("/:user/books", getAllUserBooksHandler); //NOT WORKING PLS HELP
 server.get("/:book/users", getAllReadersHandler);
 server.delete("/books/:id", authMiddleware, deleteBookHandler);
 

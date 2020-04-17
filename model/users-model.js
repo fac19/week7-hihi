@@ -19,8 +19,7 @@ function getUserById(id) {
 }
 
 function getUserById(id) {
-  return db
-    .query("SELECT * FROM users WHERE id=($1);", [id])
+  return db.query("SELECT * FROM users WHERE id=($1);", [id]);
 }
 
 function addUser(username, password, cohort) {
@@ -35,14 +34,23 @@ function addUser(username, password, cohort) {
 function getIdFromUsername(username) {
   // console.log(username);
   //SOMETHING IS GOING WRONG HERE - NOT BRINGING BACK USER ROWS
-  return db.query(`SELECT id FROM users WHERE username=$1`, [username]).then(res => res.rows);
+  return db
+    .query(`SELECT id FROM users WHERE username=$1`, [username])
+    .then((res) => res.rows);
 }
 
 function getMultipleUsersById(ids) {
   const list = ids.map((e, i) => {
-    return `$${i + 1}`
+    return `$${i + 1}`;
   });
-  return db.query(`SELECT username FROM users WHERE id IN (${list});`, ids)
+  return db.query(`SELECT username FROM users WHERE id IN (${list});`, ids);
 }
 
-module.exports = { getAllUsers, addUser, getUser, getUserById, getIdFromUsername, getMultipleUsersById };
+module.exports = {
+  getAllUsers,
+  addUser,
+  getUser,
+  getUserById,
+  getIdFromUsername,
+  getMultipleUsersById,
+};

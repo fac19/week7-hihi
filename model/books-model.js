@@ -10,8 +10,24 @@ function getBook(id) {
     .then((res) => res.rows[0]);
 }
 
+function getMultipleBooksById(ids) {
+  const sqlVariableList = ids.map((id, index) => {
+    return `$${index + 1}`;
+  });
+  return db
+    .query(`SELECT title FROM books WHERE id IN (${sqlVariableList});`, ids)
+    .then((res) => res.rows);
+}
+
+// function getMultipleUsersById(ids) {
+//   const list = ids.map((e, i) => {
+//     return `$${i + 1}`;
+//   });
+//   return db.query(`SELECT username FROM users WHERE id IN (${list});`, ids);
+// }
+
 function getIdFromTitle(title) {
-  return db.query("SELECT id FROM books WHERE title = $1", [title])
+  return db.query("SELECT id FROM books WHERE title = $1", [title]);
 }
 
 function addBook(title, author, fiction) {
@@ -22,9 +38,7 @@ function addBook(title, author, fiction) {
 }
 
 function getBooksByType(boolean) {
-  return db.query(
-    "SELECT * FROM books WHERE fiction = $1;", [boolean]
-  );
+  return db.query("SELECT * FROM books WHERE fiction = $1;", [boolean]);
 }
 
 function deleteBook(id) {
@@ -38,4 +52,13 @@ function updateBook(id, title, author, fiction) {
   );
 }
 
-module.exports = { getAllBooks, getBook, addBook, deleteBook, updateBook, getIdFromTitle, getBooksByType };
+module.exports = {
+  getAllBooks,
+  getBook,
+  getMultipleBooksById,
+  addBook,
+  deleteBook,
+  updateBook,
+  getIdFromTitle,
+  getBooksByType,
+};
