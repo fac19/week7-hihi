@@ -8,7 +8,7 @@ function getAllUsers() {
 
 function getUser(username) {
   return db
-    .query(`SELECT * FROM users WHERE username=$1;`, [username])
+    .query(`SELECT * FROM users WHERE username ILIKE $1;`, [username])
     .then((res) => res.rows[0]);
 }
 
@@ -35,7 +35,7 @@ function getIdFromUsername(username) {
   // console.log(username);
   //SOMETHING IS GOING WRONG HERE - NOT BRINGING BACK USER ROWS
   return db
-    .query(`SELECT id FROM users WHERE username=$1`, [username])
+    .query(`SELECT id FROM users WHERE username ILIKE $1`, [username])
     .then((res) => res.rows);
 }
 

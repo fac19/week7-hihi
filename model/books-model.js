@@ -27,7 +27,7 @@ function getMultipleBooksById(ids) {
 // }
 
 function getIdFromTitle(title) {
-  return db.query("SELECT id FROM books WHERE title = $1", [title]);
+  return db.query("SELECT id FROM books WHERE title ILIKE $1", [title]);
 }
 
 function addBook(title, author, fiction) {
@@ -38,7 +38,7 @@ function addBook(title, author, fiction) {
 }
 
 function getBooksByType(boolean) {
-  return db.query("SELECT * FROM books WHERE fiction = $1;", [boolean]);
+  return db.query("SELECT * FROM books WHERE fiction ILIKE $1;", [boolean]);
 }
 
 function deleteBook(id) {
