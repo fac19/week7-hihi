@@ -40,10 +40,13 @@ function getIdFromUsername(username) {
 }
 
 function getMultipleUsersById(ids) {
-  const list = ids.map((id, index) => {
+  const sqlVariableList = ids.map((id, index) => {
     return `$${index + 1}`;
   });
-  return db.query(`SELECT username FROM users WHERE id IN (${list});`, ids);
+  return db.query(
+    `SELECT username FROM users WHERE id IN (${sqlVariableList});`,
+    ids
+  );
 }
 
 module.exports = {
