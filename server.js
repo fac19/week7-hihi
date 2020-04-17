@@ -31,11 +31,11 @@ server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
 // BOOK ROUTES
 server.get("/books/non-fiction", getAllNonFictionHandler);
 server.get("/books/fiction", getAllFictionHandler);
-server.get("/books/:id", getBookIdHandler);
-server.put("/books/:id", authMiddleware, updateBookHandler);
+server.get("/books/:id([0-9]+)", getBookIdHandler);
+server.put("/books/:id([0-9]+)", authMiddleware, updateBookHandler);
 //server.get("/:user/books", getAllUserBooksHandler); NOT WORKING PLS HELP
 server.get("/:book/users", getAllReadersHandler);
-server.delete("/books/:id", authMiddleware, deleteBookHandler);
+server.delete("/books/:id([0-9]+)", authMiddleware, deleteBookHandler);
 
 server.get("/books", getAllBooksHandler);
 server.post("/books", authMiddleware, addBookHandler);
