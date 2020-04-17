@@ -25,7 +25,7 @@ function getUserById(id) {
 function addUser(username, password, cohort) {
   return db
     .query(
-      `INSERT INTO users (username, password, cohort)VALUES($1, $2, $3);`,
+      `INSERT INTO users (username, password, cohort)VALUES($1, $2, $3) RETURNING id, username, cohort;`,
       [username, password, cohort]
     )
     .then((res) => res.rows);

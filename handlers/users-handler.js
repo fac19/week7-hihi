@@ -27,7 +27,7 @@ function addUserHandler(req, res, next) {
       usersModel
         .addUser(req.body.username, hash, req.body.cohort)
         .then((newUser) => {
-          const payload = { newUser: newUser.id };
+          const payload = { user: newUser.id };
           newUser.access_token = jwt.sign(payload, SECRET, { expiresIn: "1h" });
           res.status(201).send(newUser);
         });
