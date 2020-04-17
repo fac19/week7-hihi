@@ -8,19 +8,18 @@ function getAllUsers() {
 
 function getUser(username) {
   return db
-    .query(`SELECT * FROM users WHERE username=$1;`, [username])
+    .query(`SELECT * FROM users WHERE username ILIKE $1;`, [username])
     .then((res) => res.rows[0]);
 }
 
-function getUserById(id) {
-  return db
-    .query(`SELECT * FROM users WHERE id=$1;`, [id])
-    .then((res) => res.rows);
-}
+// function getUserById(id) {
+//   return db
+//     .query(`SELECT * FROM users WHERE id=$1;`, [id])
+//     .then((res) => res.rows);
+// }
 
 function getUserById(id) {
-  return db
-    .query("SELECT * FROM users WHERE id=($1);", [id])
+  return db.query("SELECT * FROM users WHERE id=($1);", [id]);
 }
 
 function addUser(username, password, cohort) {
@@ -35,14 +34,26 @@ function addUser(username, password, cohort) {
 function getIdFromUsername(username) {
   // console.log(username);
   //SOMETHING IS GOING WRONG HERE - NOT BRINGING BACK USER ROWS
-  return db.query(`SELECT id FROM users WHERE username=$1`, [username]).then(res => res.rows);
+  return db
+    .query(`SELECT id FROM users WHERE username ILIKE $1`, [username])
+    .then((res) => res.rows);
 }
 
 function getMultipleUsersById(ids) {
-  const list = ids.map((e, i) => {
-    return `$${i + 1}`
+  const sqlVariableList = ids.map((id, index) => {
+    return `$${index + 1}`;
   });
-  return db.query(`SELECT username FROM users WHERE id IN (${list});`, ids)
+  return db.query(
+    `SELECT username FROM users WHERE id IN (${sqlVariableList});`,
+    ids
+  );
 }
 
-module.exports = { getAllUsers, addUser, getUser, getUserById, getIdFromUsername, getMultipleUsersById };
+module.exports = {
+  getAllUsers,
+  addUser,
+  getUser,
+  getUserById,
+  getIdFromUsername,
+  getMultipleUsersById,
+};

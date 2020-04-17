@@ -27,11 +27,11 @@ function getBookIdHandler(req, res, next) {
 
 function addBookHandler(req, res, next) {
   booksModel
-  .addBook(req.body.title, req.body.author, req.body.fiction)
-  .then((newBook) => {
-    res.status(200).send();
-  })
-  .catch(next);
+    .addBook(req.body.title, req.body.author, req.body.fiction)
+    .then((newBook) => {
+      res.status(200).send();
+    })
+    .catch(next);
 }
 
 function deleteBookHandler(req, res, next) {
@@ -52,43 +52,46 @@ function updateBookHandler(req, res, next) {
     .catch(next);
 }
 
-
-/*
-//All of the books read by a specific user. 
+//All of the books read by a specific user.
 function getAllUserBooksHandler(req, res, next) {
-  // console.log(req.params.user);
+  //console.log(req.params.user); CORRECT
   usersModel
     .getIdFromUsername(req.params.user)
-    .then((userId) => {
-      console.log("USER ID: ", userId);
+    .then((idArray) => {
+      let userId = idArray[0].id;
       junctionModel
         .getBooksFromUser(userId)
-        .then(bookList => {
-          const books = bookList.rows.map(e => e.title);
-          console.log(books);
-          res.status(200).send(books);
+        .then((bookIdList) => {
+          const bookIds = bookIdList.map((book) => book.book_id);
+          booksModel
+            .getMultipleBooksById(bookIds)
+            .then((bookList) => {
+              const books = bookList.map((book) => book.title);
+              res.status(200).send(books);
+            })
+            .catch(next);
         })
+        .catch(next);
     })
     .catch(next);
 }
-*/
 
 function getAllFictionHandler(req, res, next) {
   booksModel
     .getBooksByType(true)
     .then((fiction) => {
-      res.status(200).send(fiction.rows)
+      res.status(200).send(fiction.rows);
     })
-    .catch(next)
+    .catch(next);
 }
 
 function getAllNonFictionHandler(req, res, next) {
   booksModel
     .getBooksByType(false)
     .then((nonfiction) => {
-      res.status(200).send(nonfiction.rows)
+      res.status(200).send(nonfiction.rows);
     })
-    .catch(next)
+    .catch(next);
 }
 
 module.exports = {
