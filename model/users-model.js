@@ -12,11 +12,11 @@ function getUser(username) {
     .then((res) => res.rows[0]);
 }
 
-function getUserById(id) {
-  return db
-    .query(`SELECT * FROM users WHERE id=$1;`, [id])
-    .then((res) => res.rows);
-}
+// function getUserById(id) {
+//   return db
+//     .query(`SELECT * FROM users WHERE id=$1;`, [id])
+//     .then((res) => res.rows);
+// }
 
 function getUserById(id) {
   return db.query("SELECT * FROM users WHERE id=($1);", [id]);
