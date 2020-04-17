@@ -100,7 +100,7 @@ module.exports = {
   addBookHandler,
   deleteBookHandler,
   updateBookHandler,
-//   getAllUserBooksHandler,
+  getAllUserBooksHandler,
   getAllFictionHandler,
   getAllNonFictionHandler,
 };
