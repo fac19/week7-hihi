@@ -15,7 +15,12 @@ function getBookIdHandler(req, res, next) {
   booksModel
     .getBook(req.params.id)
     .then((book) => {
-      res.send(book);
+      if (book) {
+        res.send(book);
+       } else {
+        const error = new Error('No book found that corresponds to ID');
+        next(error);
+       }
     })
     .catch(next);
 }
