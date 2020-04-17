@@ -46,4 +46,10 @@ server.post("/users", addUserHandler);
 server.post("/login", loginHandler);
 // server.post("/logout", authMiddleware, logoutHandler);
 
+server.use((req, res, next) => {
+  const error = new Error("Resource Not Found");
+  error.status = 404;
+  next(error);
+});
+
 server.use(errorMiddleware);
