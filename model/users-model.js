@@ -40,8 +40,8 @@ function getIdFromUsername(username) {
 }
 
 function getMultipleUsersById(ids) {
-  const list = ids.map((e, i) => {
-    return `$${i + 1}`;
+  const list = ids.map((id, index) => {
+    return `$${index + 1}`;
   });
   return db.query(`SELECT username FROM users WHERE id IN (${list});`, ids);
 }
