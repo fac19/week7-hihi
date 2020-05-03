@@ -4,8 +4,8 @@ A REST API that returns JSON data. Our database holds data about the books that 
 
 ---
 
-📖 See who's read a book
-📚 See what books somebody has read
+📖 See who's read a book  
+📚 See what books somebody has read  
 📕 Submit your own book recommendations
 
 ---
@@ -17,17 +17,17 @@ A REST API that returns JSON data. Our database holds data about the books that 
 
 ## Planning
 
-![](https://i.imgur.com/AI3HbjG.png =700x)
+![](https://i.imgur.com/AI3HbjG.png)
 
 ---
 
 
-![](https://i.imgur.com/KUiCVIL.png =700x)
+![](https://i.imgur.com/KUiCVIL.png)
 
 ---
 
 ## WHAT WE ACHIEVED
-![](https://media.giphy.com/media/craZZHkABpd9m/giphy.gif =200x)
+![](https://media.giphy.com/media/craZZHkABpd9m/giphy.gif)
 
 ---
 
